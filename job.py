@@ -18,7 +18,7 @@ for n in range(0,5):
         
         #user_input = raw_input("Enter subdirectory name: ")
         x = "Calib_Bin_"+ str(n)
-        y = "Comb_Bin" + str(n)
+        y = "Comb_Bin_" + str(n)
         
         if not os.path.exists(x):
                 os.makedirs(x) #make directories
