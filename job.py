@@ -10,35 +10,39 @@ file = TFile.Open("/data/lhcb04/mschiller/SummerProject2018/Bu2JpsiKplus_MC_Down
 f = file.Get("Bu2JpsiKplusDetached;1.root")
 tree = f.Get("DecayTree;2")
 tree.Draw("nTracks>>h1")
-#bins =  binboundaries(h1, 10)
 
 from replacement import process, dict 
+word = ["even", "odd", "even"]
+selection = ["&&eventNumber%2==0", "&&eventNumber%2!=0", "&&eventNumber%2==0"]
                        
 for n in range(0,5):      
+        for t in range(0,2):
+                #user_input = raw_input("Enter subdirectory name: ")
+                x = "Calib_Bin_"+ str(n) + "_" + word[t]
+                y = "Comb_Bin_" + str(n) + "_" + word[t+1]
         
-        #user_input = raw_input("Enter subdirectory name: ")
-        x = "Calib_Bin_"+ str(n)
-        y = "Comb_Bin_" + str(n)
-        
-        if not os.path.exists(x):
-                os.makedirs(x) #make directories
-                os.makedirs(y)
-                bins = binboundaries(h1,5) #determine bin boundaries
-                j = """ " """
-                b = j[1]+ str(bins[n]) +"<=nTracks&&nTracks<" + str(bins[n+1])+j[1] 
+                if not os.path.exists(x):
+                        os.makedirs(x) #make directories
+                        os.makedirs(y)
+                        bins = binboundaries(h1,5) #determine bin boundaries
+                        j = """ " """
+                        b = j[1]+ str(bins[n]) +"<=nTracks&&nTracks<" + str(bins[n+1]) + selection[t] + j[1]
                 
-                dic = dict("50000", b, "1")         
-                process("EPMoptsTemplate.py", "result.py", dic) #create option file
-                shutil.move("result.py", os.path.join(x)) #move option file into correct directory
-                os.chdir(x)
-                os.system(r"../../builddir/bin/SimpleEvaluator result.py 2>&1 | tee out.log") #calibration
-                shutil.move("EspressoCalibrations.py", os.path.join('..',y))
-                shutil.move("result.py", os.path.join('..',y))
-                os.chdir(os.path.join("..",y))
-                os.system(r"../../builddir/bin/SimpleEvaluator result.py EspressoCalibrations.py 2>&1 | tee out.log") #combination
-                os.chdir("../")
-        else:  
-                print "subdirectory already exists!"
+                        dic = dict("50000", b, "", "#", "test")         
+                        process("EPMoptsTemplate.py", "result.py", dic) #create option file
+                        shutil.move("result.py", os.path.join(x)) #move option file into correct directory
+                        os.chdir(x)
+                        os.system(r"../../builddir/bin/SimpleEvaluator result.py 2>&1 | tee out.log") #calibration
+                        os.chdir("..")
+                        c = j[1] + str(bins[n]) +"<=nTracks&&nTracks<" + str(bins[n+1]) + selection[t+1] + j[1]
+                        dic2 = dict("50000", c, "#", "", x)
+                        process("EPMoptsTemplate.py", "result2.py", dic2)
+                        shutil.move("result2.py", os.path.join(y))
+                        os.chdir(y)
+                        os.system(r"../../builddir/bin/SimpleEvaluator result2.py 2>&1 | tee out.log") #combination
+                        os.chdir("../")
+                else:  
+                        print "subdirectory already exists!"
         
 
 

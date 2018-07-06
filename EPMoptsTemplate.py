@@ -1,19 +1,20 @@
 RootFile = "/data/lhcb04/mschiller/SummerProject2018/Bu2JpsiKplus_MC_Down_Upgrade_OptSummer2017.root"
 TupleName = "Bu2JpsiKplusDetached/DecayTree"
-CalibrationMode = "Bu"
-UseWeight = 0
 Nmax = @@1@@
-#BranchWeight = "SigYield_sw"
 Selection = @@2@@
 
-#OS_Combintation_Use = 1
-#OS_Combintation_BranchDec = "B_TAGDECISION_OS"
-#OS_Combintation_BranchProb = "B_TAGOMEGA_OS"
+@@3@@SaveCalibrationsToXML = 1
+CalibrationMode = "Bu"
+DoCalibrations = 1
+
+BranchID = "lab0_TRUEID"
+UseWeight = 0
+UseNewtonRaphson = 0
+
+######Branch Info###############
 
 SS_Pion_Use = 1
-#SS_Pion_TypeDec = "Short_t"
 SS_Pion_BranchDec = "lab0_SSPion_TAGDEC"
-#SS_Pion_TypeProb = "Float_t"
 SS_Pion_BranchProb = "lab0_SSPion_TAGETA"
 SS_Pion_Use = 1
 SS_Pion_Write = 1
@@ -33,11 +34,6 @@ OS_Muon_BranchDec = "lab0_OSMuonLatest_TAGDEC"
 OS_Muon_BranchProb = "lab0_OSMuonLatest_TAGETA"
 OS_Muon_Write = 1
 
-#OS_Electron_Use = 1
-#OS_Electron_BranchDec = "lab0_OSElectronLatest_TAGDEC"
-#OS_Electron_BranchProb = "lab0_OSElectronLatest_TAGETA"
-#OS_Electron_Write = 1
-
 OS_Charm_Use = 1
 OS_Charm_BranchDec = "lab0_OSCharm_TAGDEC"
 OS_Charm_BranchProb = "lab0_OSCharm_TAGETA"
@@ -48,17 +44,18 @@ SS_Proton_BranchDec = "lab0_SSProton_TAGDEC"
 SS_Proton_BranchProb = "lab0_SSProton_TAGETA"
 SS_Proton_Write = 1
 
+####Combination##############
 
-DoCalibrations = 1
-BranchID = "lab0_TRUEID"
-UseNewtonRaphson = 0
+PerformOfflineCombination_OS = 1
+OS_Kaon_InOSComb = 1
+OS_Muon_InComb = 1
+OS_Charm_InOSComb = 1
+VtxCharge_InOSComb = 1
 
-PerformOfflineCombination_OSplusSS = @@3@@
-OS_Combination_InComb = @@3@@
-SS_Pion_InComb = @@3@@
-OS_Charm_InComb = @@3@@
-SS_Proton_InComb = @@3@@
-VtxCharge_InComb = @@3@@
-OS_Muon_InComb = @@3@@
-OS_Kaon_InComb = @@3@@
+@@4@@PerformOfflineCombination_OSplusSS = 1
+@@4@@OS_Combination_InComb = 1
+@@4@@SS_Pion_InComb = 1
+##SS_Proton_InComb = 1
 
+@@4@@OS_Combination_CalibrationArchive = "../@@5@@/OS_Combination_Calibration.xml"
+@@4@@SS_Pion_CalibrationArchive = "../@@5@@/SS_Pion_Calibration.xml"

@@ -11,9 +11,7 @@ Nmax = 50000
 #OS_Combintation_BranchProb = "B_TAGOMEGA_OS"
 
 SS_Pion_Use = 1
-#SS_Pion_TypeDec = "Short_t"
 SS_Pion_BranchDec = "lab0_SSPion_TAGDEC"
-#SS_Pion_TypeProb = "Float_t"
 SS_Pion_BranchProb = "lab0_SSPion_TAGETA"
 SS_Pion_Use = 1
 SS_Pion_Write = 1
@@ -32,11 +30,6 @@ OS_Muon_Use = 1
 OS_Muon_BranchDec = "lab0_OSMuonLatest_TAGDEC"
 OS_Muon_BranchProb = "lab0_OSMuonLatest_TAGETA"
 OS_Muon_Write = 1
-
-#OS_Electron_Use = 1
-#OS_Electron_BranchDec = "lab0_OSElectronLatest_TAGDEC"
-#OS_Electron_BranchProb = "lab0_OSElectronLatest_TAGETA"
-#OS_Electron_Write = 1
 
 OS_Charm_Use = 1
 OS_Charm_BranchDec = "lab0_OSCharm_TAGDEC"
