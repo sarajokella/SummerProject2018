@@ -7,8 +7,8 @@ This package enables the EPM to be run over bins of equal bin statistics.
 The EPM is run twice, once to produce the calibration parameters for the 
 individual taggers and combine the OS taggers using the even/odd events,
 and a second time to calibrate the taggers and combine the OS and SS taggers
-using the odd/even events. Directories labelled Calib_Bin_#_even/odd
-and Comb_Bin_#_odd/even are created with the results from each EPM run.
+using the odd/even events. Directories labelled Calib_Bin_no_even/odd
+and Comb_Bin_no_odd/even are created with the results from each EPM run.
 
 histbins2.py defines a function called binboundaries which inputs a histogram
 and a desired number of bins and return the bin boundaries for bins of equal
