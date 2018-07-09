@@ -26,4 +26,5 @@ package only the job.py script must be modifed by:
 1. Choosing the desired root file and histogram 
 2. Define the changes to the template. It should be noted that the default
 setting is chosen such that the EPM runs twice as stated above
-3. Run job.py
+3. Ensure the path to the EPM is correct in the lines where the EPM is run
+4. Run job.py

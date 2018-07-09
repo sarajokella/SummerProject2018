@@ -33,6 +33,7 @@ for n in range(0,g):
                         process("EPMoptsTemplate.py", "result.py", dic) #create option file
                         shutil.move("result.py", os.path.join(x)) #move option file into correct directory
                         os.chdir(x)
+                        #First Run of the EPM
                         os.system(r"../../builddir/bin/SimpleEvaluator result.py 2>&1 | tee out.log") #calibration
                         os.chdir("..")
                         c = j[1] + str(bins[n]) +"<=nTracks&&nTracks<" + str(bins[n+1]) + selection[t+1] + j[1]
@@ -40,6 +41,7 @@ for n in range(0,g):
                         process("EPMoptsTemplate.py", "result2.py", dic2)
                         shutil.move("result2.py", os.path.join(y))
                         os.chdir(y)
+                        #Second Run of the EPM
                         os.system(r"../../builddir/bin/SimpleEvaluator result2.py 2>&1 | tee out.log") #combination
                         os.chdir("../")
                 else:  
