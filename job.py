@@ -14,7 +14,7 @@ tree.Draw("nTracks>>h1")
 from replacement import process, dict 
 word = ["even", "odd", "even"]
 selection = ["&&eventNumber%2==0", "&&eventNumber%2!=0", "&&eventNumber%2==0"]
-user_input = raw_input("Enter subdirectory name: ")
+user_input = raw_input("Enter number of bin boundaries: ")
 g = int(user_input)
                        
 for n in range(0,g):      
