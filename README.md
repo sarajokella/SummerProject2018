@@ -28,3 +28,6 @@ package only the job.py script must be modifed by:
 setting is chosen such that the EPM runs twice as stated above
 3. Ensure the path to the EPM is correct in the lines where the EPM is run
 4. Run job.py
+
+To create the final graphs, FinalGraphs.py is run, which uses out2.py to extract
+the tagging power values from the out.log files of each EPM run.
