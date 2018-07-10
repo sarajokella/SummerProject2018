@@ -6,6 +6,7 @@ import shutil
 from out2 import values
 from histbins2 import binboundaries
 import math
+from operator import add, truediv, mul
        
 tago = [0]*5
 tage = [0]*5
@@ -36,41 +37,34 @@ for n in range(0,5):
         shutil.move("out2.py", "..")
         os.chdir("..")
 
-c = TCanvas('c1', 'Final Graph', 200, 10, 1800, 1000)
-c.Divide(2,1)
-c.cd()
+ones = [1]*5 #uses linear least-squares fitting to combine the even and odd events and the errors
+
+k = map(truediv,tage,yerrorse)
+l = map(truediv,tago,yerrorso)
+final = map(truediv,map(add,k,l), map(add,map(truediv,ones,yerrorse),map(truediv,ones,yerrorso)))
+yerror = map(truediv, map(mul,yerrorso,yerrorse), map(add,yerrorso,yerrorse))
+
+c = TCanvas('c1', 'Final Graph', 200, 10, 1800, 1000) #create canvas to draw graph on
 
 cbins = ROOT.std.vector("double")() #converts python list into vectors that Root can process
-ctage = ROOT.std.vector("double")()
-ctago = ROOT.std.vector("double")()
-cyerrorse = ROOT.std.vector("double")()
-cyerrorso = ROOT.std.vector("double")()
+cfinal = ROOT.std.vector("double")()
+cyerror = ROOT.std.vector("double")()
 cxerrors = ROOT.std.vector("double")()
 
 for i in bins:
         cbins.push_back(i)
-for i in tago:
-        ctago.push_back(i)
-for i in tage:
-        ctage.push_back(i)
-for i in yerrorse:
-        cyerrorse.push_back(i)
-for i in yerrorso:
-        cyerrorso.push_back(i)
+for i in final:
+        cfinal.push_back(i)
+for i in yerror:
+        cyerror.push_back(i)
 for i in xerrors:
         cxerrors.push_back(i)
 
-g2 = TGraphErrors(5, cbins.data(), ctage.data(), cxerrors.data(), cyerrorse.data())
-g3 = TGraphErrors(5, cbins.data(), ctago.data(), cxerrors.data(), cyerrorso.data()) 
+g2 = TGraphErrors(5, cbins.data(), cfinal.data(), cxerrors.data(), cyerror.data())
 
-c.cd(1)
-g2.SetTitle("Even Events")
+c.cd()
+#g2.SetTitle("Even Events")
 g2.GetXaxis().SetTitle("N Tracks")
 g2.GetYaxis().SetTitle("Effective Tagging Power (%)")
 g2.Draw("AP")
-c.cd(2)
-g3.SetTitle("Odd Events")
-g3.GetXaxis().SetTitle("N Tracks")
-g3.GetYaxis().SetTitle("Effective Tagging Power (%)")
-g3.Draw("AP")
 c.Print("FinalGraph.png")
