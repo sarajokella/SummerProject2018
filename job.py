@@ -18,7 +18,6 @@ path = "../../builddir/" #PATH TO THE EPM
 file = TFile.Open("/data/lhcb04/mschiller/SummerProject2018/Bu2JpsiKplus_MC_Down_Upgrade_OptSummer2017.root")
 f = file.Get("Bu2JpsiKplusDetached;1.root")
 tree = f.Get("DecayTree;2")
-#tree.Draw("nTracks>>h1")
 tree.Draw(variable + ">>h1")
 
 ####################################################################################

@@ -8,6 +8,8 @@ from histbins2 import binboundaries
 import math
 from operator import add, truediv, mul
 
+#############Variables to change#####################
+
 m = 5 #NUMBER OF BINS
 variable = "nTracks" #DESIRED VARIABLE TO ANALYSE
 
@@ -15,6 +17,8 @@ file = TFile.Open("/data/lhcb04/mschiller/SummerProject2018/Bu2JpsiKplus_MC_Down
 f = file.Get("Bu2JpsiKplusDetached;1.root")
 tree = f.Get("DecayTree;2")
 tree.Draw(variable + ">>h1")
+
+####################################################
        
 tago = [0]*m
 tage = [0]*m
