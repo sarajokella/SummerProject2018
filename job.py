@@ -52,7 +52,7 @@ for n in range(0,g):
                         shutil.move("result.py", os.path.join(y))
                         os.chdir(y)
                         #Second Run of the EPM
-                        os.system(path) #combination
+                        os.system(paths) #combination
                         os.chdir("../")
                 else:  
                         print "subdirectory already exists!"

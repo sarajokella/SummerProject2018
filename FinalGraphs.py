@@ -7,29 +7,33 @@ from out2 import values
 from histbins2 import binboundaries
 import math
 from operator import add, truediv, mul
-       
-tago = [0]*5
-tage = [0]*5
-yerrorse = [0]*5
-yerrorso = [0]*5
-xerrors = [0]*5
-bins = [0]*5
+
+m = 5 #NUMBER OF BINS
+variable = "nTracks" #DESIRED VARIABLE TO ANALYSE
 
 file = TFile.Open("/data/lhcb04/mschiller/SummerProject2018/Bu2JpsiKplus_MC_Down_Upgrade_OptSummer2017.root")
 f = file.Get("Bu2JpsiKplusDetached;1.root")
 tree = f.Get("DecayTree;2")
-tree.Draw("nTracks>>h1")
+tree.Draw(variable + ">>h1")
+       
+tago = [0]*m
+tage = [0]*m
+yerrorse = [0]*m
+yerrorso = [0]*m
+xerrors = [0]*m
+bins = [0]*m
 
 
-for n in range(0,5):
-        bins[n] = (binboundaries(h1,5)[n+1] + binboundaries(h1,5)[n])/2 #find halfway point between bin boundaries
+
+for n in range(0,m):
+        bins[n] = (binboundaries(h1,m)[n+1] + binboundaries(h1,m)[n])/2 #find halfway point between bin boundaries
         x = "Comb_Bin_" + str(n) + "_even"
         y = "Comb_Bin_" + str(n) + "_odd"
         shutil.move("out2.py", os.path.join(x)) #out2.py is the script that extracts the tagging power information
         os.chdir(x) 
         tage[n] = values("out.log")[7] #tagging power for even directories
         yerrorse[n] = math.sqrt(values("out.log")[8]**2 + values("out.log")[9]**2) #extracts y errors
-        xerrors[n] = (binboundaries(h1,5)[n+1] - binboundaries(h1,5)[n])/2 # finds x errors
+        xerrors[n] = (binboundaries(h1,m)[n+1] - binboundaries(h1,m)[n])/2 # finds x errors
         shutil.move("out2.py", os.path.join("..",y))
         os.chdir(os.path.join("..",y))
         tago[n] = values("out.log")[7] #tagging power for odd directories
@@ -37,7 +41,7 @@ for n in range(0,5):
         shutil.move("out2.py", "..")
         os.chdir("..")
 
-ones = [1]*5 #uses linear least-squares fitting to combine the even and odd events and the errors
+ones = [1]*m #uses linear least-squares fitting to combine the even and odd events and the errors
 
 k = map(truediv,tage,yerrorse)
 l = map(truediv,tago,yerrorso)
@@ -60,7 +64,7 @@ for i in yerror:
 for i in xerrors:
         cxerrors.push_back(i)
 
-g2 = TGraphErrors(5, cbins.data(), cfinal.data(), cxerrors.data(), cyerror.data())
+g2 = TGraphErrors(m, cbins.data(), cfinal.data(), cxerrors.data(), cyerror.data())
 
 c.cd()
 #g2.SetTitle("Even Events")
