@@ -72,7 +72,7 @@ g2 = TGraphErrors(m, cbins.data(), cfinal.data(), cxerrors.data(), cyerror.data(
 
 c.cd()
 #g2.SetTitle("Even Events")
-g2.GetXaxis().SetTitle("N Tracks")
+g2.GetXaxis().SetTitle(variable)
 g2.GetYaxis().SetTitle("Effective Tagging Power (%)")
 g2.Draw("AP")
 c.Print("FinalGraph.png")
