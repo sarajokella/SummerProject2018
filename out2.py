@@ -18,18 +18,10 @@ def values(x):
         f.close()
         s = file[(file.index(start)+len(start)):file.index(end)]
 
-        y = re.compile(r"Combination.*").search(s).group()
+        y = re.compile(r"\sCombination.*").search(s).group() #Combination can be changed to a tagger value
 
-        final = list(map(float, re.findall(r'\d+\.\d+',y)))
-        b = open("tagvalue.py", "a+")
-        b.write('%s\n' % final[7:])
+        final = list(map(float, re.findall(r'\d+\.\d+',y))) #create list of combination tagging performance values from out.log file
         return final    
 
 
-def prPurple(skk): print("\033[95m {}\033[00m" .format(skk))
-
-#print re.compile(r"Tagger.*").search(s).group()
-#prPurple(x)
-
-#b = open("tagvalue.py", "a+")
-#b.write(final)      
+# the final list contains the 10 numbers from the Calibrated Tagging Performance table in the out.log file
