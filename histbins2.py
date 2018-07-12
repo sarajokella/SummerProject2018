@@ -23,17 +23,19 @@ def binboundaries(h1, nbins):
         list.append(cdf.GetXaxis().GetBinUpEdge(cdf.GetNbinsX())) #adds last bin
         return list
 
-#upload the data from the root file
-x = TFile.Open("/data/lhcb04/mschiller/SummerProject2018/Bu2JpsiKplus_MC_Down_Upgrade_OptSummer2017.root")
-f = x.Get("Bu2JpsiKplusDetached;1.root")
-tree = f.Get("DecayTree;2")
-tree.Draw("nTracks>>h1")
+#Uncomment to create the nTracks distribution and rebinned distribution with new bin boundaries
 
-#list = binboundaries(h1, 10) #print list of bin boundaries
-#print list
+#x = TFile.Open("/data/lhcb04/mschiller/SummerProject2018/Bu2JpsiKplus_MC_Down_Upgrade_OptSummer2017.root")
+#f = x.Get("Bu2JpsiKplusDetached;1.root")
+#tree = f.Get("DecayTree;2")
+#tree.Draw("nTracks>>h1")
+
+#list = binboundaries(h1, 5)
 
 #bin = array('d', list)
-#h1.Rebin(len(bin)-1, "h2", bin)
+#h2 = TH1D("h2", "rebin", 5, bin)
+#tree.Draw("nTracks>>h2")
+#h2.SetMinimum(0.)
 
 #c1 = TCanvas('c1', 'Example', 200, 10, 1500, 1000) #create canvas
 #c1.Divide(1,3)
