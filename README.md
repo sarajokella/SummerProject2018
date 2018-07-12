@@ -21,7 +21,7 @@ to an option file.
 
 **job.py** combines the functions from above to run the EPM in the specified 
 directories for the bins within the bin boundaries. Therefore, to run this
-package only the **job.py** script must be modifed by:
+package only the **job.py** script and the **EPMoptsTemplate.py** must be modifed by:
 
 1. Choosing the desired root file and histogram 
 2. Choosing number of desired bins
@@ -33,3 +33,9 @@ To create the final graphs, **FinalGraphs.py** is run, which uses **out2.py** to
 the tagging power values from the out.log files of each EPM run. Similar to above,
 the desired root file and histogram must be selected, as well as the number of bins
 used in the EPM runs. A png image titled FinalGraph.png is created.
+
+**Possible errors:**
+* Branch names and Calibration mode are hardcoded into **EPMoptsTemplate.py**, which may be 
+different from the ones in the root file you are using
+* This can be fixed manually, or by adding terms into the *dict* function and specifying those
+terms in **job.py**
