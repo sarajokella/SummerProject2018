@@ -9,7 +9,7 @@ from replacement import process, dict
 
 ###############Variables to change##################################################
 
-g = int(5) #NUMBER OF DESIRED BINS
+g = 5 #NUMBER OF DESIRED BINS
 variable = "nTracks" #DESIRED VARIABLE TO ANALYSE
 number = "-1" #NUMBER OF EVENTS TO RUN OVER, DEFAULT "-1" IS ALL EVENTS
 path = "../../builddir/" #PATH TO THE EPM
