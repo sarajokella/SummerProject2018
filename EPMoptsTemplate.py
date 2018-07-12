@@ -1,7 +1,7 @@
-RootFile = "/data/lhcb04/mschiller/SummerProject2018/Bu2JpsiKplus_MC_Down_Upgrade_OptSummer2017.root"
-TupleName = "Bu2JpsiKplusDetached/DecayTree"
+RootFile = "@@6@@"
+TupleName = "@@7@@" 
 Nmax = @@1@@
-Selection = @@2@@
+Selection = "@@2@@"
 
 @@3@@SaveCalibrationsToXML = 1
 CalibrationMode = "Bu"

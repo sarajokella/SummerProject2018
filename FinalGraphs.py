@@ -44,6 +44,7 @@ for n in range(0,m):
         yerrorso[n] = math.sqrt(values("out.log")[8]**2 + values("out.log")[9]**2)
         shutil.move("out2.py", "..")
         os.chdir("..")
+        
 
 ones = [1]*m #uses linear least-squares fitting to combine the even and odd events and the errors
 
