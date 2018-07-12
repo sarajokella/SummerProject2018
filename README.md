@@ -1,4 +1,4 @@
-# SummerProject2018
+# Summer Project 2018
 
 Use the Espresso Performance Monitor to study tagging performance in bins 
 of some variable.
@@ -29,13 +29,17 @@ package only the **job.py** script and the **EPMoptsTemplate.py** must be modife
 4. Specifying the path to the EPM
 5. Run job.py
 
-To create the final graphs, **FinalGraphs.py** is run, which uses **out2.py** to extract
-the tagging power values from the out.log files of each EPM run. Similar to above,
-the desired root file and histogram must be selected, as well as the number of bins
-used in the EPM runs. A png image titled FinalGraph.png is created.
+To create the final graphs, **FinalGraphs.py** is run, which uses the function *values* from 
+**out2.py** to extract the tagging power values from the out.log files of each EPM run.  
+Similar to above, the desired root file and histogram must be selected, as well as the number 
+of bins used in the EPM runs. A png image titled FinalGraph.png is created. The function *values*
+can also be used to extract the Tagging Rate, Raw Mistag, and Effective Mistag, which is explained
+in **out2.py**. 
 
 **Possible errors:**
 * Branch names and Calibration mode are hardcoded into **EPMoptsTemplate.py**, which may be 
 different from the ones in the root file you are using
-* This can be fixed manually, or by adding terms into the *dict* function and specifying those
+* This can be fixed manually, or by adding terms into the *dict*  function and specifying those
 terms in **job.py**
+* If using different taggers, then it is recommended to create a new options template in the same
+style as **EPMoptsTemplate.py**
