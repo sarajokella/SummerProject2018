@@ -20,14 +20,13 @@ def process(infile, outfile, dic): #function which reads in file and replaces ke
                         else:                                           
                                 b.write(line)           #else print line
 
-def dict(v, w, x, y, z):                    #define the dictionairy
-        dic = { "@@1@@" : v,
-                "@@2@@" : w,
-                "@@3@@" : x,
-                "@@4@@" : y,
-                "@@5@@" : z}
-        return dic
-                
-#dic = dict("50000",'"' + '"', "","#") # first argument is how to add double quotes as a string
 
-#process("EPMoptsTemplate.py", "result.py", dic)
+def dict(t, u, v, w, x, y, z):                    #define the dictionairy
+        dic = { "@@1@@" : t, #Nmax
+                "@@2@@" : u, #Selection
+                "@@3@@" : v, #XML Calibrations, must be off for run 2
+                "@@4@@" : w, #Run 2 settings, commented during run 1
+                "@@5@@" : x, #Path to XML Calibrations from run 1
+                "@@6@@" : y, #Desired Root file
+                "@@7@@" : z} #Decay Tree name
+        return dic
